@@ -12,7 +12,9 @@
 (defonce app-state (atom {:display 0}))
 
 (defn element [type props & children]
+  "Create a html element with associated attributes and children elements"
   (js/React.createElement type (clj->js props) children))
+
 
 (def Display
   (js/React.createClass
