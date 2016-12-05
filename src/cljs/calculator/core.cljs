@@ -12,14 +12,19 @@
 (defonce app-state (atom {:display 0}))
 
 (defn element [type props & children]
-  "Create a html element with associated attributes and children elements"
+  "Create a Html element with associated attributes and children elements"
   (js/React.createElement type (clj->js props) children))
+
+(defn component [name & {:keys [render]}]
+  "Create a React component"
+  (js/React.createClass
+   #js {:displayName name
+        :render render}))
 
 
 (def Display
-  (js/React.createClass
-   #js {:displayName "Display"
-        :render (fn []
+  (component "Display"
+             :render (fn []
                   (this-as t
                     (element "div" {:style {:border "1px solid black"
                                             :fontFamily "Monospace"
@@ -28,7 +33,7 @@
                                             :textAlign "right"
                                             :width "20rem"
                                             :height "3rem"}}
-                             (.. t -props -value))))}))
+                             (.. t -props -value))))))
 
 (defn render [state]
   (js/ReactDOM.render (element Display {:value (:display state)})
