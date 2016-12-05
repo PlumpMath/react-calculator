@@ -9,9 +9,21 @@
 
 (enable-console-print!)
 
-(set! (.-innerHTML (js/document.getElementById "app"))
-      "<h1>Hello React! What a great way to develop :)</h1>")
+(defn element [type props & children]
+  (js/React.createElement type (clj->js props) children))
 
-(js/React.createElement "div" #js {}
-                        (js/React.createElement "p" #js {} "Hello from React")
-                        (js/React.createElement "img" #js {:src "/parrot.gif"}))
+(def Display
+  (js/React.createClass
+   #js {:displayName "Display"
+        :render (fn []
+                  (element "div" {:style {:border "1px solid black"
+                                          :fontFamily "Monospace"
+                                          :fontSize "2.5rem"
+                                          :lineHeight "3rem"
+                                          :textAlign "right"
+                                          :width "20rem"
+                                          :height "3rem"}}
+                           "0"))}))
+
+(js/ReactDOM.render (element Display {})
+                    (js/document.getElementById "app"))
