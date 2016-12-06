@@ -23,6 +23,11 @@
                   (this-as t
                     (render (js->clj (.-props t) :keywordize-keys true))))}))
 
+(def History
+  (component "History"
+             :render (fn [props]
+                       (element "div" {:className "history"} "5 + 20 +"))))
+
 (def Display
   (component "Display"
              :render (fn [props]
