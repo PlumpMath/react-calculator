@@ -92,7 +92,7 @@
                                 (element "div" {}
                                          (element Button {:label "0" :onPress digit-pressed})
                                          (element Button {:label "."})
-                                         (element Button {:label "="})
+                                         (element Button {:label "=" :onPress equals-pressed})
                                          (element Button {:label "+" :onPress operator-pressed}))))))
 
 (def Calculator
