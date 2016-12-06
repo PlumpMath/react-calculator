@@ -19,21 +19,14 @@
   "Create a React component"
   (js/React.createClass
    #js {:displayName name
-        :render render}))
-
+        :render (fn []
+                  (this-as t
+                    (render (js->clj (.-props t) :keywordize-keys true))))}))
 
 (def Display
   (component "Display"
-             :render (fn []
-                  (this-as t
-                    (element "div" {:style {:border "1px solid black"
-                                            :fontFamily "Monospace"
-                                            :fontSize "2.5rem"
-                                            :lineHeight "3rem"
-                                            :textAlign "right"
-                                            :width "20rem"
-                                            :height "3rem"}}
-                             (.. t -props -value))))))
+             :render (fn [props]
+                       (element "div" {:className "display"} (props :value)))))
 
 (defn render [state]
   (js/ReactDOM.render (element Display {:value (:display state)})
