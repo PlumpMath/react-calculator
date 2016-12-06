@@ -3,11 +3,6 @@
             cljsjs.react.dom
             [clojure.string :as str]))
 
-(extend-type js/Symbol
-  IPrintWithWriter
-  (-pr-writer [obj writer _]
-    (write-all writer (str "#object[" (.toString obj) "]"))))
-
 (enable-console-print!)
 
 (def app-state (atom {:display 0 :history []}))
