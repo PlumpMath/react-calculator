@@ -63,8 +63,16 @@
                                          (element Button {})
                                          (element Button {}))))))
 
+(def Calculator
+  (component "Calculator"
+             :render (fn [props]
+                       (element "div" {}
+                                (element History {})
+                                (element Display {:value (props :display)})
+                                (element Keypad {})))))
+
 (defn render [state]
-  (js/ReactDOM.render (element Display {:value (:display state)})
+  (js/ReactDOM.render (element Calculator state)
                       (js/document.getElementById "app")))
 
 (render @app-state)
