@@ -33,6 +33,11 @@
              :render (fn [props]
                        (element "div" {:className "display"} (props :value)))))
 
+(def Button
+  (component "Button"
+             :render (fn [props]
+                       (element "button" {:className "button"} "-"))))
+
 (defn render [state]
   (js/ReactDOM.render (element Display {:value (:display state)})
                       (js/document.getElementById "app")))
