@@ -38,6 +38,31 @@
              :render (fn [props]
                        (element "button" {:className "button"} "-"))))
 
+(def Keypad
+  (component "Keypad"
+             :render (fn [props]
+                       (element "div" {}
+                                (element "div" {}
+                                         (element Button {})
+                                         (element Button {})
+                                         (element Button {})
+                                         (element Button {}))
+                                (element "div" {}
+                                         (element Button {})
+                                         (element Button {})
+                                         (element Button {})
+                                         (element Button {}))
+                                (element "div" {}
+                                         (element Button {})
+                                         (element Button {})
+                                         (element Button {})
+                                         (element Button {}))
+                                (element "div" {}
+                                         (element Button {})
+                                         (element Button {})
+                                         (element Button {})
+                                         (element Button {}))))))
+
 (defn render [state]
   (js/ReactDOM.render (element Display {:value (:display state)})
                       (js/document.getElementById "app")))
